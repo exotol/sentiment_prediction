@@ -12,7 +12,7 @@ from model import BertBaseUncased
 
 
 def run():
-    dfx = pd.read_csv(config.TRAIN_FILE).fillna("none")
+    dfx = pd.read_csv(config.TRAIN_FILE).fillna("none").head(100)
     dfx.sentiment = dfx.sentiment.apply(
         lambda x: 1 if x == "positive" else 0
     )
@@ -104,8 +104,8 @@ def run():
             device=device,
         )
 
-        outputs = np.array(result.probabilities) > 0.5
-        accuracy = metrics.accuracy_score(result.targets, outputs)
+        outputs = np.array(result['probabilities']) > 0.5
+        accuracy = metrics.accuracy_score(result['targets'], outputs)
 
         print(f"Accuracy score = {accuracy}")
 

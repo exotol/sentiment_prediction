@@ -59,7 +59,7 @@ def eval_fn(
             ids = data["ids"].to(device)
             token_type_ids = data["token_type_ids"].to(device)
             mask = data["mask"].to(device)
-            targets = data["targets"].to(device)
+            targets = data["target"].to(device)
 
             outputs = model(
                 ids=ids,
